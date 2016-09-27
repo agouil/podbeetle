@@ -8,12 +8,14 @@ class Podcast(Base):
     remote_id = Column(String(256), unique=True)
     name = Column(String(512))
     author = Column(String(128))
+    title = Column(String(512))
     image = Column(String(512))
     url = Column(String(512))
 
-    def __init__(self, name, author, image, url, remote_id=None):
+    def __init__(self, name, author, title, image, url, remote_id=None):
         self.name = name
         self.author = author
+        self.title = title
         self.image = image
         self.url = url
         self.remote_id = remote_id
