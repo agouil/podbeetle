@@ -6,6 +6,11 @@
         <center>
             <h1>Podcast Transcriber</h1>
             <br/><br/><br/><br/>
+            <form>
+                Search: <input type="text" name="query" size="64" />
+                <input type="submit" />
+            </form>
+            <br/><br/>
             <div>
                 {% for podcast in podcasts %}
                     <div>{{ podcast.name }}</div>
