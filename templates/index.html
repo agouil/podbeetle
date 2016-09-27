@@ -13,7 +13,24 @@
             <br/><br/>
             <div>
                 {% for podcast in podcasts %}
-                    <div>{{ podcast.name }}</div>
+                    <div>
+                        <div>
+                            <img src="{{ podcast.image }}" width="100" height="100"/>
+                        </div>
+                        <div>
+                            Name: {{ podcast.name }}
+                        </div>
+                        <div>
+                            Title: {{ podcast.title }}
+                        </div>
+                        <div>
+                            Remote ID: {{ podcast.remote_id }}
+                        </div>
+                        <div>
+                            URL: <a href="{{ podcast.url }}">{{ podcast.url }}</a>
+                        </div>
+                    </div>
+                    <br/><br/><br/>
                 {% else %}
                     <h2>No podcasts found.</h2>
                 {% endfor %}
