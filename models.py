@@ -11,12 +11,12 @@ class Podcast(Base):
     image = Column(String(512))
     url = Column(String(512))
 
-    def __init__(self, remote_id, name, author, image, url):
-        self.remote_id = remote_id
+    def __init__(self, name, author, image, url, remote_id=None):
         self.name = name
         self.author = author
         self.image = image
         self.url = url
+        self.remote_id = remote_id
 
     def __repr__(self):
         return '<Podcast %s - %s>' % (self.author, self.name)
