@@ -3,6 +3,16 @@
         <title>Podcast Transcriber</title>
     </head>
     <body>
-        <h1>Hello World</h1>
+        <center>
+            <h1>Podcast Transcriber</h1>
+            <br/><br/><br/><br/>
+            <div>
+                {% for podcast in podcasts %}
+                    <div>{{ podcast.name }}</div>
+                {% else %}
+                    <h2>No podcasts found.</h2>
+                {% endfor %}
+            </div>
+        </center>
     </body>
 </html>

@@ -1,4 +1,5 @@
 from database import db_session
+from models import Podcast
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -6,7 +7,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    podcasts = Podcast.query.all()
+    return render_template("index.html", **{
+        "podcasts": podcasts
+    })
 
 
 @app.teardown_appcontext
