@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    podcasts = Podcast.query.all()
+    podcasts = Podcast.query.order_by(Podcast.remote_id).all()
     return render_template("index.html", **{
         "podcasts": podcasts
     })
