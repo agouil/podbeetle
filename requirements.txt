@@ -1,0 +1,3 @@
+Flask==0.11.1
+SQLAlchemy==1.0.15
+git+https://github.com/agouil/deepgram-python.git
