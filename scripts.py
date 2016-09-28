@@ -7,7 +7,7 @@ from models import Podcast
 
 def populate_db():
     """
-    Populates the databae wiht the contents of the 'podcast_data.csv' file
+    Populates the database with the contents of the 'podcast_data.csv' file
     """
 
     with open("./db/podcast_data.csv", "r") as csvfile:
@@ -22,6 +22,8 @@ def populate_db():
             db_session.add(p)
         # commit changes to db
         db_session.commit()
+        # close db session
+        db_session.remove()
 
 
 def deepgram_upload():
