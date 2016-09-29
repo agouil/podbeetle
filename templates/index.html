@@ -161,19 +161,32 @@
                     event.preventDefault();
                     var itemContainer = $('.item-container');
                     var query = $('.search-bar form input[name="query"]').val();
-                    itemContainer.css({
-                        'min-height': ($(window).height() - $('.upper').outerHeight()) + 'px'
-                    }).empty();
-                    spinner.spin($('.lower')[0]);
-                    $.get('/search?query=' + query, function(data) {
-                        data.result.forEach(function(item) {
-                            var newResult = $('<div/>').addClass('col-xs-6 col-sm-4 col-md-2 item').append(
-                                $('<img/>').addClass('img-responsive').attr('src', item.image)
-                            );
-                            $(itemContainer).append(newResult.fadeIn('slow'));
+                    if (query) {
+                        itemContainer.css({
+                            'min-height': ($(window).height() - $('.upper').outerHeight()) + 'px'
+                        }).empty();
+                        spinner.spin($('.lower')[0]);
+                        $.get('/search?query=' + query, function(data) {
+                            data.result.forEach(function(item) {
+                                var newResult = $('<div/>').addClass('col-xs-6 col-sm-4 col-md-2 item').append(
+                                    $('<img/>').addClass('img-responsive').attr('src', item.image)
+                                );
+                                $(itemContainer).append(newResult.fadeIn('slow'));
+                            });
+                            spinner.stop();
                         });
-                        spinner.stop();
-                    });
+                    } else {
+                        $('.search-bar form input[name="query"]').focus();
+                        setTimeout(function() {
+                            $('.search-bar form input[name="query"]').blur();
+                            setTimeout(function() {
+                                $('.search-bar form input[name="query"]').focus();
+                                setTimeout(function() {
+                                    $('.search-bar form input[name="query"]').blur();
+                                }, 200);
+                            }, 200);
+                        }, 200);
+                    }
                 });
             });
         </script>
