@@ -31,6 +31,7 @@
         }
         .lower {
             height: 100%;
+            position:relative;
         }
         .search-bar {
             margin-top: 85px;
@@ -76,26 +77,18 @@
         <div class="outer-container">
             <div class="upper">
                 <div class="row">
-                    <div class="col-xs-10 col-xs-offset-1">
-                        <div class="row">
-                            <div class="col-xs-8 col-xs-offset-2 text-center">
-                                <h1>PodBeetle</h1>
-                            </div>
-                        </div>
+                    <div class="col-xs-10 col-xs-offset-1 text-center">
+                        <h1>PodBeetle</h1>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-10 col-xs-offset-1">
-                        <div class="row">
-                            <div class="col-xs-8 col-xs-offset-2 text-center search-bar">
-                                <form action="/search" class="form-inline">
-                                    <div class="row">
-                                        <input class="col-xs-9 col-sm-10" type="text" name="query" placeholder="Search for keywords" />
-                                        <button type="submit" class="btn col-xs-3 col-sm-2">Search</button>
-                                    </div>
-                                </form>
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 text-center search-bar">
+                        <form action="{{ url_for('search') }}" class="form-inline">
+                            <div class="row">
+                                <input class="col-xs-9 col-sm-10" type="text" name="query" placeholder="Search for keywords" />
+                                <button type="submit" class="btn col-xs-3 col-sm-2">Search</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -114,6 +107,51 @@
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            $(function() {
+                var spinner = new Spinner({
+                    lines: 11,
+                    length: 23,
+                    width: 29,
+                    radius: 0,
+                    scale: 1,
+                    corners: 0.5,
+                    color: '#ECECEC',
+                    opacity: 0,
+                    rotate: 0,
+                    direction: 1,
+                    speed: 1,
+                    trail: 75,
+                    fps: 20,
+                    zIndex: 2e9,
+                    className: 'spinner',
+                    top: '50%',
+                    left: '50%',
+                    shadow: false,
+                    hwaccel: false,
+                    position: 'absolute'
+                });
+                $('.search-bar form button').click(function(event) {
+                    event.preventDefault();
+                    var itemContainer = $('.item-container');
+                    var query = $('.search-bar form input[name="query"]').val();
+                    itemContainer.css({
+                        'min-height': ($(window).height() - $('.upper').outerHeight()) + 'px'
+                    }).empty();
+                    spinner.spin($('.lower')[0]);
+                    $.get('/search?query=' + query, function(data) {
+                        data.result.forEach(function(item) {
+                            var newResult = $('<div/>').addClass('col-xs-6 col-sm-4 col-md-2 item').append(
+                                $('<img/>').addClass('img-responsive').attr('src', item.image)
+                            );
+                            $(itemContainer).append(newResult.fadeIn('slow'));
+                        });
+                        spinner.stop();
+                    });
+                });
+            });
+        </script>
     </body>
 </html>
