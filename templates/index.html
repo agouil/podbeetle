@@ -95,6 +95,9 @@
             .item {
                 padding: 2px;
             }
+            .no-result {
+                color: #ECECEC;
+            }
         </style>
     </head>
     <body>
@@ -167,12 +170,19 @@
                         }).empty();
                         spinner.spin($('.lower')[0]);
                         $.get('/search?query=' + query, function(data) {
-                            data.result.forEach(function(item) {
-                                var newResult = $('<div/>').addClass('col-xs-6 col-sm-4 col-md-2 item').append(
-                                    $('<img/>').addClass('img-responsive').attr('src', item.image)
+                            if (data.result.length > 0) {
+                                data.result.forEach(function(item) {
+                                    var newResult = $('<div/>').addClass('col-xs-6 col-sm-4 col-md-2 item').append(
+                                        $('<img/>').addClass('img-responsive').attr('src', item.image)
+                                    );
+                                    $(itemContainer).append(newResult.fadeIn('slow'));
+                                });
+                            } else {
+                                var noResult = $('<div/>').addClass('col-xs-10 col-xs-offset-1 text-center no-result').append(
+                                    $('<h2/>').html('No results were found for your search. Please try again.')
                                 );
-                                $(itemContainer).append(newResult.fadeIn('slow'));
-                            });
+                                $(itemContainer).append(noResult.fadeIn('slow'));
+                            }
                             spinner.stop();
                         });
                     } else {
