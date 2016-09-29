@@ -1,78 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
         <title>PodBeetle</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ url_for('static', filename='apple-touch-icon-57x57.png') }}" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ url_for('static', filename='apple-touch-icon-114x114.png') }}" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ url_for('static', filename='apple-touch-icon-72x72.png') }}" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ url_for('static', filename='apple-touch-icon-144x144.png') }}" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{ url_for('static', filename='apple-touch-icon-60x60.png') }}" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ url_for('static', filename='apple-touch-icon-120x120.png') }}" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ url_for('static', filename='apple-touch-icon-76x76.png') }}" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ url_for('static', filename='apple-touch-icon-152x152.png') }}" />
+
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-196x196.png') }}" sizes="196x196" />
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-96x96.png') }}" sizes="96x96" />
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-32x32.png') }}" sizes="32x32" />
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-16x16.png') }}" sizes="16x16" />
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-128.png') }}" sizes="128x128" />
+
+        <meta name="application-name" content="PodBeetle"/>
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-TileImage" content="{{ url_for('static', filename='mstile-144x144.png') }}" />
+        <meta name="msapplication-square70x70logo" content="{{ url_for('static', filename='mstile-70x70.png') }}" />
+        <meta name="msapplication-square150x150logo" content="{{ url_for('static', filename='mstile-150x150.png') }}" />
+        <meta name="msapplication-wide310x150logo" content="{{ url_for('static', filename='mstile-310x150.png') }}" />
+        <meta name="msapplication-square310x310logo" content="{{ url_for('static', filename='mstile-310x310.png') }}" />
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Open+Sans" rel="stylesheet">
+        <style>
+            body {
+                background: #22313F;
+            }
+            .outer-container {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                overflow-x: hidden;
+            }
+            .upper {
+                height: 315px;
+                background: #3A539B;
+                color: #ECECEC;
+                font-family: "Gloria Hallelujah", cursive;
+            }
+            .upper h1 {
+                font-size: 50px;
+            }
+            .lower {
+                height: 100%;
+                position:relative;
+            }
+            .search-bar {
+                margin-top: 85px;
+                font-family: "Open Sans", sans-serif;
+            }
+            .search-bar input[type="text"] {
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 0px;
+                border-top-right-radius: 0px;
+                padding: 21px 15px;
+                display: block;
+                height: 34px;
+                font-size: 16px;
+                line-height: 1.42857143;
+                color: #555;
+                background-color: #fff;
+                border: 0;
+                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+                -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            }
+            .search-bar button {
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+                border-bottom-left-radius: 0px;
+                border-top-left-radius: 0px;
+                padding: 10px 15px;
+                border: 0;
+                background: #F64747;
+                font-size: 16px;
+            }
+            .item-container {
+                margin: 0 2px;
+            }
+            .item {
+                padding: 2px;
+            }
+        </style>
     </head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Open+Sans" rel="stylesheet">
-    <style>
-        body {
-            background: #22313F;
-        }
-        .outer-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
-        }
-        .upper {
-            height: 315px;
-            background: #3A539B;
-            color: #ECECEC;
-            font-family: "Gloria Hallelujah", cursive;
-        }
-        .upper h1 {
-            font-size: 50px;
-        }
-        .lower {
-            height: 100%;
-            position:relative;
-        }
-        .search-bar {
-            margin-top: 85px;
-            font-family: "Open Sans", sans-serif;
-        }
-        .search-bar input[type="text"] {
-            border-top-left-radius: 15px;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 0px;
-            border-top-right-radius: 0px;
-            padding: 21px 15px;
-            display: block;
-            height: 34px;
-            font-size: 16px;
-            line-height: 1.42857143;
-            color: #555;
-            background-color: #fff;
-            border: 0;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        }
-        .search-bar button {
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
-            border-bottom-left-radius: 0px;
-            border-top-left-radius: 0px;
-            padding: 10px 15px;
-            border: 0;
-            background: #F64747;
-            font-size: 16px;
-        }
-        .item-container {
-            margin: 0 2px;
-        }
-        .item {
-            padding: 2px;
-        }
-    </style>
     <body>
         <div class="outer-container">
             <div class="upper">
