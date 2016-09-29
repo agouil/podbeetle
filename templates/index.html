@@ -37,6 +37,7 @@
             body {
                 background: #22313F;
                 font-family: "Open Sans", sans-serif;
+                color: #ECECEC;
             }
             .outer-container {
                 position: relative;
@@ -95,9 +96,6 @@
             .item {
                 padding: 2px;
             }
-            .no-result {
-                color: #ECECEC;
-            }
         </style>
     </head>
     <body>
@@ -123,7 +121,25 @@
                 <div class="row item-container">
                     {% for podcast in podcasts %}
                         <div class="col-xs-6 col-sm-4 col-md-2 item">
-                            <img src="{{ podcast.image }}" class="img-responsive" />
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <a href="{{ podcast.url }}">
+                                        <img src="{{ podcast.image }}" class="img-responsive" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <strong>
+                                        {{ podcast.title }}
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    {{ podcast.name }} by {{ podcast.author }}
+                                </div>
+                            </div>
                         </div>
                     {% else %}
                         <div class="col-xs-10 col-xs-offset-1 text-center">
@@ -173,7 +189,25 @@
                             if (data.result.length > 0) {
                                 data.result.forEach(function(item) {
                                     var newResult = $('<div/>').addClass('col-xs-6 col-sm-4 col-md-2 item').append(
-                                        $('<img/>').addClass('img-responsive').attr('src', item.image)
+                                        $('<div/>').addClass('row').append(
+                                            $('<div/>').addClass('col-xs-12').append(
+                                                $('<a/>').attr('href', item.url).append(
+                                                    $('<img/>').addClass('img-responsive').attr('src', item.image)
+                                                )
+                                            )
+                                        )
+                                    ).append(
+                                        $('<div/>').addClass('row').append(
+                                            $('<div/>').addClass('col-xs-12').append(
+                                                $('<strong/>').html(item.title)
+                                            )
+                                        )
+                                    ).append(
+                                        $('<div/>').addClass('row').append(
+                                            $('<div/>').addClass('col-xs-12').append(
+                                                $('<strong/>').html(item.name + " by " + item.author)
+                                            )
+                                        )
                                     );
                                     $(itemContainer).append(newResult.fadeIn('slow'));
                                 });
