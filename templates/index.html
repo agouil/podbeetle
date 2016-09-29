@@ -1,40 +1,114 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
         <title>Podcast Transcriber</title>
     </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <style>
+        body {
+            background: #22313F;
+        }
+        .outer-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+        .upper {
+            height: 315px;
+            background: #3A539B;
+        }
+        .lower {
+            height: 100%;
+        }
+        .search-bar {
+            margin-top: 85px;
+        }
+        .search-bar input[type="text"] {
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 0px;
+            border-top-right-radius: 0px;
+            padding: 21px 15px;
+            display: block;
+            height: 34px;
+            font-size: 16px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            border: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+        .search-bar button {
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border-bottom-left-radius: 0px;
+            border-top-left-radius: 0px;
+            padding: 10px 15px;
+            border: 0;
+            background: #F64747;
+            font-size: 16px;
+        }
+        .item-container {
+            margin: 0 2px;
+        }
+        .item {
+            padding: 2px;
+        }
+    </style>
     <body>
-        <center>
-            <h1>Podcast Transcriber</h1>
-            <br/><br/><br/><br/>
-            <form>
-                Search: <input type="text" name="query" size="64" />
-                <input type="submit" />
-            </form>
-            <br/><br/>
-            <div>
-                {% for podcast in podcasts %}
-                    <div>
-                        <div>
-                            <img src="{{ podcast.image }}" width="100" height="100"/>
-                        </div>
-                        <div>
-                            Name: {{ podcast.name }}
-                        </div>
-                        <div>
-                            Title: {{ podcast.title }}
-                        </div>
-                        <div>
-                            Remote ID: {{ podcast.remote_id }}
-                        </div>
-                        <div>
-                            URL: <a href="{{ podcast.url }}">{{ podcast.url }}</a>
+        <div class="outer-container">
+            <div class="upper">
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="row">
+                            <div class="col-xs-8 col-xs-offset-2 text-center">
+                                <h1>Podcast Transcriber</h1>
+                            </div>
                         </div>
                     </div>
-                    <br/><br/><br/>
-                {% else %}
-                    <h2>No podcasts found.</h2>
-                {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="row">
+                            <div class="col-xs-8 col-xs-offset-2 text-center search-bar">
+                                <form action="/search" class="form-inline">
+                                    <div class="row">
+                                        <input class="col-xs-9 col-sm-10" type="text" name="query" placeholder="Search for keywords" />
+                                        <button type="submit" class="btn col-xs-3 col-sm-2">Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </center>
+            <div class="lower">
+                <div class="row item-container">
+                    {% for podcast in podcasts %}
+                        <div class="col-xs-6 col-sm-4 col-md-2 item">
+                            <a href="{{ podcast.url }}">
+                                <img src="{{ podcast.image }}" class="img-responsive" />
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="col-xs-10 col-xs-offset-1 text-center">
+                            <h2>No podcasts found.</h2>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
 </html>
