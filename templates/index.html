@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <head>
-        <title>Podcast Transcriber</title>
+        <title>PodBeetle</title>
     </head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Open+Sans" rel="stylesheet">
     <style>
         body {
             background: #22313F;
@@ -22,12 +23,18 @@
         .upper {
             height: 315px;
             background: #3A539B;
+            color: #ECECEC;
+            font-family: "Gloria Hallelujah", cursive;
+        }
+        .upper h1 {
+            font-size: 50px;
         }
         .lower {
             height: 100%;
         }
         .search-bar {
             margin-top: 85px;
+            font-family: "Open Sans", sans-serif;
         }
         .search-bar input[type="text"] {
             border-top-left-radius: 15px;
@@ -72,7 +79,7 @@
                     <div class="col-xs-10 col-xs-offset-1">
                         <div class="row">
                             <div class="col-xs-8 col-xs-offset-2 text-center">
-                                <h1>Podcast Transcriber</h1>
+                                <h1>PodBeetle</h1>
                             </div>
                         </div>
                     </div>
@@ -96,9 +103,7 @@
                 <div class="row item-container">
                     {% for podcast in podcasts %}
                         <div class="col-xs-6 col-sm-4 col-md-2 item">
-                            <a href="{{ podcast.url }}">
-                                <img src="{{ podcast.image }}" class="img-responsive" />
-                            </a>
+                            <img src="{{ podcast.image }}" class="img-responsive" />
                         </div>
                     {% else %}
                         <div class="col-xs-10 col-xs-offset-1 text-center">
