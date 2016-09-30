@@ -50,6 +50,13 @@
                 background: #3A539B;
                 color: #ECECEC;
             }
+            .upper a {
+                color: #ECECEC;
+            }
+            .upper a:hover {
+                color: #ECECEC;
+                text-decoration: none;
+            }
             .upper h1 {
                 font-family: "Gloria Hallelujah", cursive;
                 font-size: 50px;
@@ -111,7 +118,9 @@
             <div class="upper">
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1 text-center">
-                        <h1>PodBeetle</h1>
+                        <a href="{{ url_for('index') }}">
+                            <h1>PodBeetle</h1>
+                        </a>
                     </div>
                 </div>
                 <div class="row">
