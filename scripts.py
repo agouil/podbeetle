@@ -1,5 +1,6 @@
 import argparse
 import csv
+import sys
 
 from database import db_session, init_db
 from models import Podcast
@@ -13,7 +14,8 @@ def populate_db():
     with open("./db/podcast_data.csv", "r") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            p = Podcast(row["name"], row["author"], row["title"], row["image"],
+            p = Podcast(row["name"].decode('utf8'), row["author"],
+                        row["title"].decode('utf8'), row["image"],
                         row["url"])
 
             # if data has remote_id property then add to db
@@ -35,6 +37,9 @@ def deepgram_upload():
 
 
 if __name__ == "__main__":
+    reload(sys)
+    sys.setdefaultencoding('UTF8')
+
     parser = argparse.ArgumentParser(prog="python scripts.py")
     parser.add_argument("script", help="the script to run")
     args = parser.parse_args()
