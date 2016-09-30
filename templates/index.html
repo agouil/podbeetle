@@ -102,9 +102,13 @@
             }
             .item {
                 padding: 2px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .item img {
                 cursor: pointer;
+                max-height: 228px;
             }
             .player audio {
                 position: fixed;
@@ -155,13 +159,25 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <strong>
-                                        {{ podcast.title }}
+                                        {% if podcast.title|length > 29 %}
+                                            {{ podcast.title[:29] }}...
+                                        {% else %}
+                                            {{ podcast.title }}
+                                        {% endif %}
                                     </strong>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    {{ podcast.name }} by {{ podcast.author }}
+                                    {% if (podcast.name + ' by ' + podcast.author)|length > 29 %}
+                                        {% if podcast.name|length > 29 %}
+                                            {{ podcast.name[:29] }}...
+                                        {% else %}
+                                            {{ podcast.name}}
+                                        {% endif %}
+                                    {% else %}
+                                        {{ podcast.name }} by {{ podcast.author }}
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
