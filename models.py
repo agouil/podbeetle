@@ -5,7 +5,7 @@ from sqlalchemy import Column, Integer, String
 class Podcast(Base):
     __tablename__ = 'podcast'
     id = Column(Integer, primary_key=True)
-    remote_id = Column(String(256), unique=True)
+    remote_id = Column(String(256))
     name = Column(String(512))
     author = Column(String(128))
     title = Column(String(512))
