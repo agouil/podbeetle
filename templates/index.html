@@ -66,7 +66,7 @@
                 position:relative;
             }
             .search-bar {
-                margin-top: 85px;
+                margin-top: 50px;
             }
             .search-bar input[type="text"] {
                 border-top-left-radius: 15px;
@@ -118,9 +118,18 @@
             <div class="upper">
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1 text-center">
-                        <a href="{{ url_for('index') }}">
-                            <h1>PodBeetle</h1>
-                        </a>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <a href="{{ url_for('index') }}">
+                                    <h1>PodBeetle</h1>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3>Search for keywords in your favourite podcasts.</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
