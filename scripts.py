@@ -14,7 +14,7 @@ def populate_db():
     Populates the database with the contents of the 'podcast_data.csv' file
     """
 
-    with open("./db/podcast_data.csv", "r") as csvfile:
+    with open("./db/podcast_data_dump.csv", "r") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             p = Podcast(row["name"].decode('utf8'), row["author"],
