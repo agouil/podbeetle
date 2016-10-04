@@ -1,11 +1,12 @@
 import json
 
+from math import floor
+
 from config import DEEPGRAM_API_KEY
 from database import db_session
 from deepgram import Deepgram
-from math import floor
-from models import Podcast
 from flask import Flask, render_template, request, Response
+from models import Podcast
 
 app = Flask(__name__)
 

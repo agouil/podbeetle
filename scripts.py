@@ -2,11 +2,12 @@ import argparse
 import csv
 import sys
 
+from time import sleep
+
 from config import DEEPGRAM_API_KEY
 from database import db_session, init_db
 from deepgram import Deepgram
 from models import Podcast
-from time import sleep
 
 
 def populate_db():
