@@ -1,8 +1,11 @@
+from config import DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine('sqlite:///db/app.db', convert_unicode=True)
+engine = create_engine('postgresql+psycopg2://%s:%s@%s:%s/%s' % (
+    DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME))
 db_session = scoped_session(
     sessionmaker(autocommit=False, autoflush=False, bind=engine))
 
