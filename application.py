@@ -8,10 +8,10 @@ from deepgram import Deepgram
 from flask import Flask, render_template, request, Response
 from models import Podcast
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 
-@app.route('/')
+@application.route('/')
 def index():
     podcasts = Podcast.query.order_by(Podcast.remote_id).all()
     return render_template("index.html", **{
@@ -19,7 +19,7 @@ def index():
     })
 
 
-@app.route('/search')
+@application.route('/search')
 def search():
     query = request.args.get("query", "")
     dg_client = Deepgram(DEEPGRAM_API_KEY)
@@ -61,10 +61,10 @@ def search():
     return Response(json.dumps({"result": result}), mimetype='text/json')
 
 
-@app.teardown_appcontext
+@application.teardown_appcontext
 def shutdown_session(exception=None):
     db_session.remove()
 
 
 if __name__ == "__main__":
-    app.run()
+    application.run()
