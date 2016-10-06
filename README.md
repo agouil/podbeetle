@@ -52,6 +52,7 @@ After this step is complete you'll be able to run the app and search for keyword
 
 ### Run the app
 To run the app, simply:
+
 1. Set the Flask enviroment variable: `export FLASK_APP=app.py`
 2. Run the Flask app with: `flask run`
 
