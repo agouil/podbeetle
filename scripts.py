@@ -57,15 +57,13 @@ def dump_db():
 
 def deepgram_upload():
     """
-    Uploads any new podcasts to Deepgram API
+    Uploads any new podcasts to Deepgram API. New podcasts are the ones where
+    the 'remote_id' field is empty
     """
 
     dg = Deepgram(DEEPGRAM_API_KEY)
 
-    podcasts_to_upload = Podcast.query.filter(
-        Podcast.remote_id == "").limit(15).all()
-
-    # podcasts_to_upload = Podcast.query.filter(Podcast.remote_id == "").all()
+    podcasts_to_upload = Podcast.query.filter(Podcast.remote_id == "").all()
 
     for podcast in podcasts_to_upload:
         upload_response = dg.upload(podcast.url, ["podcast"])
@@ -79,8 +77,9 @@ def deepgram_upload():
                 continue
             elif status_response["status"] in [
                     "transcode", "chunk", "awaiting_gen_lattice"]:
-                # sleep 5 secs
-                # TODO: periodically check the server until is done
+                #
+                # TODO: periodically check the server until is done. (5 secs)
+                #
                 break
             elif status_response["status"] == "done":
                 break
