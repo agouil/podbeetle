@@ -205,7 +205,6 @@
         <script type="text/javascript">
             $(function() {
                 function progress() {
-                    console.log('here');
                     var srcElem = $('div[data-url="' + $(this).attr('src') + '"]');
                     if ($(srcElem).attr('data-start-time') > 0) {
                         this.currentTime = $(srcElem).attr('data-start-time');
