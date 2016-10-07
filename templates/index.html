@@ -204,16 +204,21 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script type="text/javascript">
             $(function() {
+                function progress() {
+                    console.log('here');
+                    var srcElem = $('div[data-url="' + $(this).attr('src') + '"]');
+                    if ($(srcElem).attr('data-start-time') > 0) {
+                        this.currentTime = $(srcElem).attr('data-start-time');
+                    }
+                    $(this).unbind('progress');
+                }
                 $('.item-container').on('click', '.item img', function(e) {
                     var parent = $(this).parent();
                     var audio = $('.player audio')[0];
                     $('.player').show();
                     $(audio).attr('src', parent.attr('data-url'));
+                    $(audio).attr('data-new', 1);
                     audio.play();
-                    if (parent.attr('data-start-time') > 0) {
-                        audio.currentTime = parent.attr('data-start-time');
-                    }
-
                 });
                 $('.player audio').on('play', function(e) {
                     if ($('img.play-active')) {
@@ -229,6 +234,10 @@
                     $('body').animate({
                         scrollTop: $(srcTileImg).offset().top
                     }, 2000);
+                    if ($(this).attr('data-new') > 0) {
+                        $(this).attr('data-new', 0);
+                        $(this).bind('progress', progress);
+                    }
                 });
                 $('.player audio').on('pause', function(e) {
                     $('img.play-active').remove();
