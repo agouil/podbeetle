@@ -1,0 +1,88 @@
+body {
+    background: #22313F;
+    font-family: "Open Sans", sans-serif;
+    color: #ECECEC;
+}
+.outer-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+.upper {
+    height: 315px;
+    background: #3A539B;
+    color: #ECECEC;
+}
+.upper a {
+    color: #ECECEC;
+}
+.upper a:hover {
+    color: #ECECEC;
+    text-decoration: none;
+}
+.upper h1 {
+    font-family: "Gloria Hallelujah", cursive;
+    font-size: 50px;
+}
+.lower {
+    height: 100%;
+    position:relative;
+    padding-bottom: 50px;
+}
+.search-bar {
+    margin-top: 50px;
+}
+.search-bar input[type="text"] {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    padding: 21px 15px;
+    display: block;
+    height: 34px;
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    border: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.search-bar button {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    padding: 10px;
+    border: 0;
+    background: #F64747;
+    font-size: 16px;
+}
+.item-container {
+    margin: 0 2px;
+}
+.item {
+    padding: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item img {
+    cursor: pointer;
+}
+.player audio {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.play-active {
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
