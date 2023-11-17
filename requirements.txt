@@ -1,4 +1,4 @@
 Flask==0.10.1
-SQLAlchemy==1.0.15
+SQLAlchemy==1.2.18
 psycopg2==2.6.2
 deepgram==0.1.2
